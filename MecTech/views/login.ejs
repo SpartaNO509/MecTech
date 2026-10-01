@@ -1,0 +1,84 @@
+<%- include('partials/header') %>
+
+<main>
+
+    <h2>Solicitação de Serviço</h2>
+
+    <p>
+        Preencha os dados abaixo para informar o que deseja verificar
+        em seu veículo.
+    </p>
+
+    <form action="/servicos" method="POST">
+
+        <label for="nome">Nome:</label>
+        <br>
+        <input
+            type="text"
+            id="nome"
+            name="nome"
+            required
+        >
+
+        <br><br>
+
+        <label for="telefone">Telefone:</label>
+        <br>
+        <input
+            type="tel"
+            id="telefone"
+            name="telefone"
+            required
+        >
+
+        <br><br>
+
+        <label for="carro">Modelo do carro:</label>
+        <br>
+        <input
+            type="text"
+            id="carro"
+            name="carro"
+            placeholder="Ex: Honda Civic"
+            required
+        >
+
+        <br><br>
+
+        <label for="placa">Placa:</label>
+        <br>
+        <input
+            type="text"
+            id="placa"
+            name="placa"
+            required
+        >
+
+        <br><br>
+
+        <label for="problema">
+            O que deseja verificar no carro?
+        </label>
+
+        <br>
+
+        <textarea
+            id="problema"
+            name="problema"
+            rows="6"
+            cols="40"
+            placeholder="Descreva o problema ou o serviço que deseja realizar..."
+            required
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Solicitar Serviço
+        </button>
+
+    </form>
+
+</main>
+
+<%- include('partials/footer') %>
