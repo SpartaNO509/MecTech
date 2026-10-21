@@ -1,84 +1,34 @@
-<%- include('partials/header') %>
+<%- include('partials/header', { titulo: 'Entrar' }) %>
 
-<main>
+<main class="container mt-4">
+    <% if (erro) { %>
+        <div class="alert <%= erro.includes('sucesso') ? 'alert-success' : 'alert-danger' %>"><%= erro %></div>
+    <% } %>
 
-    <h2>Solicitação de Serviço</h2>
-
-    <p>
-        Preencha os dados abaixo para informar o que deseja verificar
-        em seu veículo.
-    </p>
-
-    <form action="/servicos" method="POST">
-
-        <label for="nome">Nome:</label>
-        <br>
-        <input
-            type="text"
-            id="nome"
-            name="nome"
-            required
-        >
-
-        <br><br>
-
-        <label for="telefone">Telefone:</label>
-        <br>
-        <input
-            type="tel"
-            id="telefone"
-            name="telefone"
-            required
-        >
-
-        <br><br>
-
-        <label for="carro">Modelo do carro:</label>
-        <br>
-        <input
-            type="text"
-            id="carro"
-            name="carro"
-            placeholder="Ex: Honda Civic"
-            required
-        >
-
-        <br><br>
-
-        <label for="placa">Placa:</label>
-        <br>
-        <input
-            type="text"
-            id="placa"
-            name="placa"
-            required
-        >
-
-        <br><br>
-
-        <label for="problema">
-            O que deseja verificar no carro?
-        </label>
-
-        <br>
-
-        <textarea
-            id="problema"
-            name="problema"
-            rows="6"
-            cols="40"
-            placeholder="Descreva o problema ou o serviço que deseja realizar..."
-            required
-        ></textarea>
-
-        <br><br>
-
-        <button type="submit">
-            Solicitar Serviço
-        </button>
-
-    </form>
-
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card card-produto"><div class="card-body p-4">
+                <h2 class="h4 mb-3">Entrar</h2>
+                <form action="/login" method="POST">
+                    <div class="mb-3"><label class="form-label">E-mail</label><input type="email" name="email" class="form-control" required></div>
+                    <div class="mb-3"><label class="form-label">Senha</label><input type="password" name="senha" class="form-control" required></div>
+                    <button class="btn btn-mectech w-100" type="submit">Entrar</button>
+                </form>
+            </div></div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-produto"><div class="card-body p-4">
+                <h2 class="h4 mb-3">Criar conta</h2>
+                <form action="/registrar" method="POST">
+                    <div class="mb-3"><label class="form-label">Nome</label><input type="text" name="nome" class="form-control" required></div>
+                    <div class="mb-3"><label class="form-label">Telefone</label><input type="tel" name="telefone" class="form-control" required></div>
+                    <div class="mb-3"><label class="form-label">E-mail</label><input type="email" name="email" class="form-control" required></div>
+                    <div class="mb-3"><label class="form-label">Senha</label><input type="password" name="senha" class="form-control" required minlength="6"></div>
+                    <button class="btn btn-outline-mectech w-100" type="submit">Cadastrar</button>
+                </form>
+            </div></div>
+        </div>
+    </div>
 </main>
 
 <%- include('partials/footer') %>
