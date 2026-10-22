@@ -1,0 +1,57 @@
+<%- include('partials/header', { titulo: produto.nome, pagina: 'produtos' }) %>
+
+<main class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Início</a></li>
+            <li class="breadcrumb-item"><a href="/produtos">Produtos</a></li>
+            <li class="breadcrumb-item active"><%= produto.nome %></li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <div class="col-md-5">
+            <div class="produto-img" style="height:320px;font-size:7rem;border-radius:.75rem;">🛞</div>
+        </div>
+        <div class="col-md-7">
+            <span class="badge text-bg-secondary mb-2"><%= produto.marca %></span>
+            <h1 class="fw-bold"><%= produto.nome %></h1>
+            <p class="preco display-6 my-3"><%= moeda(produto.preco) %></p>
+            <p class="text-muted"><%= produto.observacoes || 'Sem observações adicionais.' %></p>
+
+            <p>
+                <% if (produto.estoque > 0) { %>
+                    <span class="badge text-bg-success">Em estoque: <%= produto.estoque %> un.</span>
+                <% } else { %>
+                    <span class="badge text-bg-danger">Indisponível</span>
+                <% } %>
+            </p>
+
+            <% if (produto.estoque > 0) { %>
+                <% if (usuario) { %>
+                    <form action="/comprar" method="POST" class="row g-2 align-items-end" style="max-width:360px;">
+                        <input type="hidden" name="id_produto" value="<%= produto.id_produto %>">
+                        <div class="col-5">
+                            <label class="form-label small">Quantidade</label>
+                            <input type="number" name="quantidade" class="form-control" value="1" min="1" max="<%= produto.estoque %>" required>
+                        </div>
+                        <div class="col-7"><button class="btn btn-mectech w-100" type="submit">Comprar</button></div>
+                    </form>
+                <% } else { %>
+                    <a href="/login" class="btn btn-mectech">Entre para comprar</a>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+
+    <% if (relacionados.length > 0) { %>
+        <h2 class="section-title mt-5 mb-4">Mais da marca <%= produto.marca %></h2>
+        <div class="row g-4">
+            <% relacionados.forEach(p => { %>
+                <div class="col-md-4"><%- include('partials/card-produto', { p }) %></div>
+            <% }) %>
+        </div>
+    <% } %>
+</main>
+
+<%- include('partials/footer') %>

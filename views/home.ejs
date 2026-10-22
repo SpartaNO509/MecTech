@@ -1,0 +1,38 @@
+<%- include('partials/header', { titulo: 'Início', pagina: 'home' }) %>
+
+<section class="hero">
+    <div class="container">
+        <h1 class="display-4">Peças e serviços para o seu carro, <span>sem complicação</span>.</h1>
+        <p class="lead mt-3 mb-4">A MecTech reúne autopeças de marcas confiáveis e atendimento de oficina em um só lugar.</p>
+        <a href="/produtos" class="btn btn-mectech btn-lg me-2">Ver produtos</a>
+        <a href="/sobre" class="btn btn-outline-light btn-lg">Conheça a MecTech</a>
+    </div>
+</section>
+
+<main class="container mt-5">
+    <div class="row g-3 mb-5">
+        <div class="col-md-6"><div class="stat-box"><strong><%= resumo.total_produtos %></strong>produtos disponíveis</div></div>
+        <div class="col-md-6"><div class="stat-box"><strong><%= resumo.total_marcas %></strong>marcas parceiras</div></div>
+    </div>
+
+    <h2 class="section-title mb-4">Destaques</h2>
+    <% if (destaques.length === 0) { %>
+        <div class="alert alert-info">Nenhum produto disponível no momento.</div>
+    <% } else { %>
+        <div class="row g-4">
+            <% destaques.forEach(p => { %>
+                <div class="col-md-4"><%- include('partials/card-produto', { p }) %></div>
+            <% }) %>
+        </div>
+        <div class="text-center mt-4"><a href="/produtos" class="btn btn-mectech">Ver catálogo completo</a></div>
+    <% } %>
+
+    <h2 class="section-title mt-5 mb-4">Nossos serviços</h2>
+    <div class="row g-3">
+        <% ['Troca de óleo e filtros','Revisão geral','Manutenção do motor','Freios','Alinhamento e balanceamento','Diagnóstico de problemas'].forEach(s => { %>
+            <div class="col-6 col-md-4"><div class="stat-box py-3">🔧 <%= s %></div></div>
+        <% }) %>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

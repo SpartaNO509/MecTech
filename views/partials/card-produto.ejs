@@ -1,0 +1,12 @@
+<div class="card card-produto h-100">
+    <div class="produto-img"></div>
+    <div class="card-body d-flex flex-column">
+        <span class="badge text-bg-secondary align-self-start mb-2"><%= p.marca %></span>
+        <h5 class="card-title"><%= p.nome %></h5>
+        <% if (p.observacoes) { %><p class="card-text text-muted small"><%= p.observacoes %></p><% } %>
+        <div class="mt-auto">
+            <p class="preco mb-2"><%= moeda(p.preco) %></p>
+            <a href="/produtos/<%= p.id_produto %>" class="btn btn-outline-mectech w-100">Ver detalhes</a>
+        </div>
+    </div>
+</div>
