@@ -1,0 +1,28 @@
+<%- include('partials/header', { titulo: 'Sobre', pagina: 'sobre' }) %>
+
+<main class="container mt-4">
+    <h1 class="section-title mb-4">Sobre a MecTech</h1>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <h2 class="h4">Nossa história</h2>
+            <p>Nós .../p>
+
+            <h2 class="h4 mt-4">Missão</h2>
+            <p>Facilitar o acesso a peças e serviços confiáveis para que cada cliente rode com tranquilidade.</p>
+
+            <h2 class="h4 mt-4">Equipe</h2>
+            <ul>
+                <li>Gabriel Sant Angelo</li>
+                <li>Heitor Medeiros</li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <div class="stat-box mb-3"><strong><%= stats.total_produtos %></strong>produtos cadastrados</div>
+            <div class="stat-box mb-3"><strong><%= stats.total_marcas %></strong>marcas</div>
+            <div class="stat-box"><strong><%= stats.total_estoque %></strong>unidades em estoque</div>
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

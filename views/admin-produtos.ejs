@@ -1,0 +1,43 @@
+<%- include('partials/header', { titulo: 'Admin - Produtos' }) %>
+
+<main class="container mt-4">
+    <h1 class="section-title mb-4">Gerenciar produtos</h1>
+
+    <div class="card card-produto mb-4"><div class="card-body">
+        <h2 class="h5"><%= produtoEditar ? 'Editar produto' : 'Novo produto' %></h2>
+        <form method="POST" action="<%= produtoEditar ? '/admin/produtos/atualizar/' + produtoEditar.id_produto : '/admin/produtos/salvar' %>" class="row g-2">
+            <div class="col-md-4"><input name="nome" class="form-control" placeholder="Nome" required value="<%= produtoEditar ? produtoEditar.nome : '' %>"></div>
+            <div class="col-md-2"><input name="marca" class="form-control" placeholder="Marca" required value="<%= produtoEditar ? produtoEditar.marca : '' %>"></div>
+            <div class="col-md-2"><input name="preco" type="number" step="0.01" min="0" class="form-control" placeholder="Preço" required value="<%= produtoEditar ? produtoEditar.preco : '' %>"></div>
+            <div class="col-md-2"><input name="estoque" type="number" min="0" class="form-control" placeholder="Estoque" required value="<%= produtoEditar ? produtoEditar.estoque : '' %>"></div>
+            <div class="col-md-12"><input name="observacoes" class="form-control" placeholder="Observações" value="<%= produtoEditar ? (produtoEditar.observacoes || '') : '' %>"></div>
+            <div class="col-12">
+                <button class="btn btn-mectech" type="submit">Salvar</button>
+                <% if (produtoEditar) { %><a href="/admin/produtos" class="btn btn-outline-secondary">Cancelar</a><% } %>
+            </div>
+        </form>
+    </div></div>
+
+    <div class="table-responsive">
+        <table class="table table-striped align-middle bg-white">
+            <thead><tr><th>#</th><th>Nome</th><th>Marca</th><th>Preço</th><th>Estoque</th><th></th></tr></thead>
+            <tbody>
+                <% produtos.forEach(p => { %>
+                    <tr>
+                        <td><%= p.id_produto %></td>
+                        <td><%= p.nome %></td>
+                        <td><%= p.marca %></td>
+                        <td><%= moeda(p.preco) %></td>
+                        <td><%= p.estoque %></td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-primary" href="/admin/produtos/editar/<%= p.id_produto %>">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" href="/admin/produtos/excluir/<%= p.id_produto %>" onclick="return confirm('Excluir este produto?')">Excluir</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<%- include('partials/footer') %>
