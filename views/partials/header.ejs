@@ -24,6 +24,9 @@
             </ul>
             <div class="d-flex align-items-center gap-2">
                 <% if (usuario) { %>
+                    <% if (usuario.nivel_acesso === 'admin') { %>
+                        <a class="btn btn-sm btn-warning" href="/admin/produtos">Painel Admin</a>
+                    <% } %>
                     <span class="text-light small">Olá, <%= usuario.nome %></span>
                     <a class="btn btn-sm btn-outline-light" href="/logout">Sair</a>
                 <% } else { %>
